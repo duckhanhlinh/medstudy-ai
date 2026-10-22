@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MedStudy AI — trợ lý ôn tập dành cho sinh viên Y khoa." />
+  <title>MedStudy AI | Trợ lý ôn thi Y khoa</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">✚</div><div><strong>MedStudy AI</strong><small>Medical learning companion</small></div></div>
+      <button class="new-chat" id="newChat">＋ Cuộc trò chuyện mới</button>
+      <p class="nav-label">KHÔNG GIAN HỌC TẬP</p>
+      <button class="nav-item active" data-panel="chat">◉ Gia sư AI</button>
+      <button class="nav-item" data-panel="schedule">▦ Lịch ôn thi</button>
+      <button class="nav-item" data-panel="library">▤ Thư viện tài liệu</button>
+      <button class="nav-item" data-panel="quiz">☷ Luyện trắc nghiệm</button>
+      <div class="sidebar-note"><span class="status-dot"></span> Bản thử nghiệm giao diện<br/><small>Chưa kết nối mô hình AI</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><span class="eyebrow">YOUR STUDY SPACE</span><h1 id="pageTitle">Học Y khoa, có kế hoạch hơn.</h1></div>
+        <div class="avatar">MS</div>
+      </header>
+
+      <section id="chatPanel" class="panel">
+        <div class="welcome">
+          <div class="welcome-icon">✚</div>
+          <p class="eyebrow">CHÀO BẠN, FUTURE DOCTOR</p>
+          <h2>Hôm nay mình cùng học gì?</h2>
+          <p class="muted">Hỏi kiến thức, ôn theo đề cương hoặc tạo câu hỏi tự kiểm tra.</p>
+        </div>
+        <div class="suggestions">
+          <button class="suggestion" data-prompt="Giải thích một khái niệm Y khoa theo kiểu dễ hiểu, có ví dụ lâm sàng."><b>✳ Giải thích kiến thức</b><span>Đi từ cơ bản đến cơ chế</span></button>
+          <button class="suggestion" data-prompt="Tạo 5 câu hỏi trắc nghiệm ôn tập, mỗi câu có 4 lựa chọn và giải thích đáp án."><b>☷ Luyện trắc nghiệm</b><span>Kiểm tra mức độ ghi nhớ</span></button>
+          <button class="suggestion" data-prompt="Hướng dẫn tôi biến một đề cương môn học thành kế hoạch ôn tập theo ngày."><b>▦ Lập kế hoạch ôn thi</b><span>Chia nhỏ nội dung cần học</span></button>
+          <button class="suggestion" data-prompt="Tóm tắt tài liệu học tập thành ý chính, bảng so sánh và flashcard."><b>▤ Tóm tắt tài liệu</b><span>Hệ thống hóa nội dung</span></button>
+        </div>
+        <div class="chat-card">
+          <div id="messages" class="messages">
+            <div class="message assistant"><div class="message-avatar">✚</div><div class="bubble"><strong>MedStudy AI</strong><p>Chào bạn! Mình là khung trợ lý ôn thi Y khoa. Hiện tại đây là bản giao diện mẫu, chưa kết nối AI và chưa có đề cương/lịch thi của bạn. Bạn có thể thử các nút gợi ý để xem luồng tương tác.</p><small>Luôn đối chiếu kiến thức quan trọng với giáo trình và hướng dẫn chính thức.</small></div></div>
+          </div>
+          <form id="chatForm" class="composer">
+            <textarea id="userInput" rows="1" placeholder="Nhập câu hỏi học tập..." aria-label="Câu hỏi của bạn"></textarea>
+            <button type="submit" aria-label="Gửi câu hỏi">↑</button>
+          </form>
+          <p class="disclaimer">MedStudy AI là công cụ hỗ trợ học tập, không thay thế đánh giá chuyên môn hoặc hướng dẫn điều trị.</p>
+        </div>
+      </section>
+
+      <section id="schedulePanel" class="panel hidden">
+        <div class="section-heading"><div><p class="eyebrow">STUDY PLANNER</p><h2>Lịch ôn thi</h2><p class="muted">Nhập lịch của bạn sau; dữ liệu bên dưới chỉ là ví dụ giao diện.</p></div></div>
+        <div class="notice">Chưa có lịch thi được nhập. Khi bổ sung dữ liệu thật, hãy kiểm tra lại ngày, giờ và phòng thi với thông báo chính thức của trường.</div>
+        <div class="empty-card"><div class="empty-icon">▦</div><h3>Lịch thi của bạn sẽ xuất hiện ở đây</h3><p>Giai đoạn tiếp theo sẽ bổ sung form nhập môn học, ngày thi, mức độ khó và thời lượng ôn tập.</p></div>
+      </section>
+
+      <section id="libraryPanel" class="panel hidden">
+        <div class="section-heading"><div><p class="eyebrow">KNOWLEDGE BASE</p><h2>Thư viện tài liệu</h2><p class="muted">Khu vực chuẩn bị để quản lý đề cương, giáo trình và lịch thi.</p></div></div>
+        <div class="upload-card"><div class="empty-icon">▤</div><h3>Chưa có tài liệu nào được nạp</h3><p>Đây mới là placeholder. Chưa có file nào được tải lên, trích xuất hoặc lập chỉ mục.</p><ul><li>Đề cương môn học (PDF/DOCX)</li><li>Lịch thi (PDF/XLSX/CSV)</li><li>Tài liệu được phép sử dụng để ôn tập</li></ul><button class="secondary" id="uploadInfo">Xem quy trình nạp tài liệu</button><p id="uploadHelp" class="help hidden">Quy trình dự kiến: tải file lên backend riêng → trích xuất văn bản → chia đoạn → tạo embedding/lập chỉ mục → truy xuất đoạn liên quan khi hỏi → hiển thị nguồn. Không đưa khóa API vào mã frontend.</p></div>
+      </section>
+
+      <section id="quizPanel" class="panel hidden">
+        <div class="section-heading"><div><p class="eyebrow">ACTIVE RECALL</p><h2>Luyện trắc nghiệm</h2><p class="muted">Bản mẫu chưa sinh câu hỏi từ đề cương của bạn.</p></div></div>
+        <div class="empty-card"><div class="empty-icon">☷</div><h3>Chuẩn bị bộ câu hỏi đầu tiên</h3><p>Khi có tài liệu, bot có thể tạo câu hỏi theo từng chủ đề, mức độ khó và kèm giải thích đáp án.</p><button class="primary" data-go-chat="Tạo 5 câu hỏi trắc nghiệm mẫu về giải phẫu học cơ bản.">Thử luồng hỏi đáp mẫu</button></div>
+      </section>
+      <footer>MedStudy AI · Prototype v0.1 · Học tập có trách nhiệm</footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
