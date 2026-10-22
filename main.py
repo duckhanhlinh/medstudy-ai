@@ -27,7 +27,7 @@ app.add_middleware(
 
 BASE_DIR = Path(__file__).resolve().parent
 
-PDF_FILES = ["CNXHKH.pdf", "PN.pdf"]
+PDF_FILES = ["CNXHKH1.pdf", "PN.pdf"]
 EXCEL_FILE = "Thoikhoabieu.xlsx"
 
 api_key = os.getenv("GEMINI_API_KEY")
